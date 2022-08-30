@@ -1,3 +1,4 @@
+let carro = JSON.parse(localStorage.getItem('productosAgregados')) || [];
 const destinos = [
   {
     id: 0,
@@ -55,14 +56,18 @@ destinos.forEach((p) => {
                       <h5 class="card-title" id="itemName">${p.nombre}</h5>
                       <p class="card-text" text-aling:center id="itemDesc">${p.zona}</p>
                       <p class="card-text" <p>$${p.precio}</p></p>
-                      <a href="#" class="btn btn-primary" onclick="addToCart(${p.id});" >Comprar</a>
+                      <a href="#" class="btn btn-primary" onclick="addToCart(${p.id});pasarALS();" >Comprar</a>
                   </div>
               </div>
           </div>
   `;
 });
-
 document.getElementById('shop').innerHTML = content;
+
+let pasarALS = () => {
+  let storageJSON = JSON.stringify(cart);
+  localStorage.setItem('productosAgregados', storageJSON);
+};
 
 function renderCart() {
   if (cart.length == 0) {
@@ -79,7 +84,7 @@ function renderCart() {
                   <div class="card-body">
                       <h5 class="card-title" id="itemName">${cart[i].nombre}</h5>
                       <p class="card-text" <p>$${cart[i].precio}</p></p>
-                      <span style="cursor:pointer;" onclick="removeFromCart(${i});">❌</span>
+                      <span style="cursor:pointer;" onclick="removeFromCart(${i});pasarALS();">❌</span>
                   </div>
               </div>
           </div>  
@@ -93,13 +98,10 @@ function addToCart(id) {
   const foundProduct = destinos.find((item) => item.id == id);
   cart.push(foundProduct);
   renderCart();
+  pasarALS();
 }
 function removeFromCart(id) {
   cart.splice(id, 1);
   renderCart();
+  pasarALS();
 }
-
-/* function filterDestinos{
-
-}
- */
