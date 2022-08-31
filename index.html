@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
+<html lang="es">
+    <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <!-- <script src="./js/popper.min.js"></script> -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/sweetalert2.min.css">
@@ -14,11 +12,11 @@
     <title>Viajes por Argentina!</title>
 </head>
 
-<body>
+<body background="/img/background.png">
    <div>swal("Oops, Algo salió mal!!", "error");</div>
     <header>
         <div class="container">
-            <div class="row align-items-stretch justify-content-between">
+            <!-- <div class="row align-items-stretch justify-content-between"> -->
                 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
                     <a class="navbar-brand" href="#">Viajes por Argentina</a>
                     <img src="./img/logo-footer.png">
@@ -26,10 +24,10 @@
     </header> 
     <main>
         <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 my-4 mx-auto text-center">
-            <h1 class="display-4 mt-4">Elija su proximo destino por nuestro Pais!</h1>
+            <h1 class="display-3 mt-2">Elija su proximo destino por nuestro Pais!</h1>
        
-        <div class="card" id="#">
-            <!-- todo los productos van aca -->
+       <!-- <div class="card" id="#">
+             todo los productos van aca -->
         </div>
         <div class="container">
             <nav class="navbar navbar-light bg-light">
@@ -39,22 +37,21 @@
                 <button style="margin: 10px" class="btn btn-secondary" type="submit" id="searchItem1">Zona Sur</button>  
                 <button style="margin: 10px" class="btn btn-secondary" type="submit" id="searchItem2">Internacional</button> 
               </form>
-              <button class="btn btn-primary" id=""><i class="fas fa-shopping-cart"></i>(0)</button>
+              <!-- <button class="btn btn-primary" id=""><i class="fas fa-shopping-cart"></i>(0)</button> -->
             </nav>
             <div class="row text-center" id="shop"></div>
             <nav class="navbar navbar-light bg-light"></nav>
             <a class="navbar-brand"><b><h2>Carrito</h2></b></a>
             <img src="./img/carrito.jpeg" style="width:50px;height:50px;">
-            <div class="row text-center" id="cart"></div>
+            <div class="row text-center" id="carro"></div>
             
           </div>
     </main>
 
     <script src="./js/jquery-3.4.1.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
-    <script src="./js/carrito2.js"></script>
+    <script src="./js/carrito.js"></script>
     <script src="lib/sweet-alert.min.js"></script>
 
 </body>
-
 </html>
