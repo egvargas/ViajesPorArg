@@ -6,50 +6,75 @@ const destinos = [
     nombre: 'Salta',
     precio: 35000,
     zona: 'Norte',
-    img: 'https://cdn.getyourguide.com/img/tour/5d270e86b3e53.jpeg/146/Desde-Salta--excursi-n-de-d-a-completo-a-Humahuaca.jpg',
+    img: './img/salta.jpg',
   },
   {
     id: 1,
     nombre: 'Jujuy',
     precio: 34000,
     zona: 'Norte',
-    img: 'https://tn.com.ar/resizer/Eq258bquwCsMFJq0uvPrWTMNQKg=/767x0/smart/cloudfront-us-east-1.images.arcpublishing.com/artear/5UJC6VDE7SVPKOPL2MWAULBDEU.jpg',
+    img: './img/jujuy.jpg',
   },
   {
     id: 2,
     nombre: 'Tucuman',
     precio: 30000,
     zona: 'Norte',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/8/85/Tucuman-CasaIndependencia2.jpg',
+    img: './img/tucuman.jpg',
   },
   {
     id: 3,
     nombre: 'Bariloche',
     precio: 70000,
     zona: 'Sur',
-    img: 'https://media.traveler.es/photos/61376b7b4c612f07ec399172/1:1/w_1333,h_1333,c_limit/46653.jpg',
+    img: './img/bariloche.jpg',
   },
   {
     id: 4,
     nombre: 'Mendoza',
     precio: 80000,
     zona: 'Sur',
-    img: 'https://tripin.travel/wp-content/uploads/2020/06/turismo-mendoza-2-web.jpg',
+    img: './img/mendoza.jpg',
   },
   {
     id: 5,
     nombre: 'Ushuaia',
     precio: 100000,
     zona: 'Sur',
-    img: 'https://media.viajando.travel/p/ed55770f8c8875de65e4e0dae5a314f6/adjuntos/236/imagenes/000/490/0000490331/1200x675/smart/ushuaia.jpg',
+    img: './img/ushuaia.jpg',
+  },
+  {
+    id: 6,
+    nombre: 'Chile',
+    precio: 110000,
+    zona: 'Inter',
+    img: './img/chile.jpg',
+  },
+  {
+    id: 7,
+    nombre: 'Uruguay',
+    precio: 90000,
+    zona: 'Inter',
+    img: './img/uruguay.jpg',
+  },
+  {
+    id: 8,
+    nombre: 'Brasil',
+    precio: 120000,
+    zona: 'Inter',
+    img: './img/brasil.jpg',
   },
 ];
 
 let content = '';
 let cart = [];
-
-destinos.forEach((p) => {
-  content += `
+// se agrega un FETCH asi el JSON LOCAL //
+fetch('./data/destinos.json')
+  .then((res) => res.json())
+  .then((json) => {
+    let content = '';
+    json.forEach((p) => {
+      content += `
     <div id="keyBoard" class="col-md-4 mt-2">
               <div class="card" style="width: 18rem;">
                   <img  src="${p.img}" class="card-img-top img-fluid"  style="width:300px;height:200px;">
@@ -62,8 +87,12 @@ destinos.forEach((p) => {
               </div>
           </div>
   `;
-});
-document.getElementById('shop').innerHTML = content;
+    });
+    document.getElementById('shop').innerHTML = content;
+  })
+  .catch((e) => {
+    console.log(e);
+  });
 
 let pasarALS = () => {
   let storageJSON = JSON.stringify(carro);
@@ -83,11 +112,11 @@ function renderCart() {
         `
         <div id="keyBoard" class="col-md-4 mt-2">
               <div class="card" style="width: 18rem;">
-                  <img  src="${carro[i].img}" class="card-img-top img-fluid"  style="width:300px;height:200px;">
+                  <img  src="${carro[i].img}" class="card-img-top img-fluid"  style="width:300px;height:200px;"> 
                   <div class="card-body">
                       <h5 class="card-title" id="itemName">${carro[i].nombre}</h5>
                       <p class="card-text" <p>$${carro[i].precio}</p></p>
-                      <span style="cursor:pointer;" onclick="removeFromCart(${i});pasarALS();">❌</span>
+                      <span style="cursor:pointer;" onclick="eliminar(${i});pasarALS();">❌</span>
                   </div>
               </div>
           </div>  
@@ -102,10 +131,37 @@ function addToCart(id) {
   carro.push(foundProduct);
   pasarALS();
   renderCart();
+  Swal.fire({
+    position: 'top-end',
+    icon: 'success',
+    title: 'Producto Agregado al carro',
+    showConfirmButton: false,
+    timer: 1000,
+  });
 }
 
 function removeFromCart(id) {
   carro.splice(id, 1);
   pasarALS();
   renderCart();
+}
+
+function eliminar() {
+  Swal.fire({
+    title: 'Quieres eliminar el destino?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Si',
+  }).then((isConfirmed) => {
+    if (isConfirmed) {
+      removeFromCart();
+      Swal.fire('Destino eliminado');
+    } else {
+      renderCart();
+      Swal.fire('No se ha eliminado.', 'El registro NO ha sido eliminado.', 'error');
+      delay(2000);
+    }
+  });
 }

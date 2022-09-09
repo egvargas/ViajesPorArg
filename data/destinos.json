@@ -1,0 +1,65 @@
+[
+  {
+    "id": 0,
+    "nombre": "Salta",
+    "precio": "35000",
+    "zona": "Norte",
+    "img": "img/salta.jpg"
+  },
+  {
+    "id": 1,
+    "nombre": "Jujuy",
+    "precio": "34000",
+    "zona": "Norte",
+    "img": "img/jujuy.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "Tucuman",
+    "precio": "30000",
+    "zona": "Norte",
+    "img": "img/tucuman.jpg"
+  },
+  {
+    "id": 3,
+    "nombre": "Bariloche",
+    "precio": "70000",
+    "zona": "Sur",
+    "img": "img/bariloche.jpg"
+  },
+  {
+    "id": 4,
+    "nombre": "Mendoza",
+    "precio": "80000",
+    "zona": "Sur",
+    "img": "img/mendoza.jpg"
+  },
+  {
+    "id": 5,
+    "nombre": "Ushuaia",
+    "precio": "100000",
+    "zona": "Sur",
+    "img": "img/ushuaia.jpg"
+  },
+  {
+    "id": 6,
+    "nombre": "Chile",
+    "precio": "110000",
+    "zona": "Internacional",
+    "img": "img/chile.jpg"
+  },
+  {
+    "id": 7,
+    "nombre": "Uruguay",
+    "precio": "90000",
+    "zona": "Internacional",
+    "img": "img/uruguay.jpg"
+  },
+  {
+    "id": 8,
+    "nombre": "Brasil",
+    "precio": "120000",
+    "zona": "Internacional",
+    "img": "img/brasil.jpg"
+  }
+]
