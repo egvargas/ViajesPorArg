@@ -69,12 +69,13 @@ const destinos = [
 let content = '';
 let cart = [];
 // se agrega un FETCH asi el JSON LOCAL //
-fetch('./data/destinos.json')
-  .then((res) => res.json())
-  .then((json) => {
-    let content = '';
-    json.forEach((p) => {
-      content += `
+function renderALL() {
+  fetch('./data/destinos.json')
+    .then((res) => res.json())
+    .then((json) => {
+      let content = '';
+      json.forEach((p) => {
+        content += `
     <div id="keyBoard" class="col-md-4 mt-2">
               <div class="card" style="width: 18rem;">
                   <img  src="${p.img}" class="card-img-top img-fluid"  style="width:300px;height:200px;">
@@ -87,13 +88,14 @@ fetch('./data/destinos.json')
               </div>
           </div>
   `;
+      });
+      document.getElementById('shop').innerHTML = content;
+    })
+    .catch((e) => {
+      console.log(e);
     });
-    document.getElementById('shop').innerHTML = content;
-  })
-  .catch((e) => {
-    console.log(e);
-  });
-
+}
+renderALL();
 let pasarALS = () => {
   let storageJSON = JSON.stringify(carro);
   localStorage.setItem('productosAgregados', storageJSON);
@@ -164,4 +166,91 @@ function eliminar() {
       delay(2000);
     }
   });
+}
+
+function renderNorte() {
+  fetch('./data/destinos.json')
+    .then((res) => res.json())
+    .then((zonas) => {
+      const mostrarNorte = zonas.filter((dst) => dst.zona === `Norte`);
+      /* console.log(mostrarNorte); */
+      let content = '';
+      mostrarNorte.forEach((mostrarNorte) => {
+        content += `
+    <div id="keyBoard" class="col-md-4 mt-2">
+              <div class="card" style="width: 18rem;">
+                  <img  src="${mostrarNorte.img}" class="card-img-top img-fluid"  style="width:300px;height:200px;">
+                  <div class="card-body">
+                      <h5 class="card-title" id="itemName">${mostrarNorte.nombre}</h5>
+                      <p class="card-text" text-aling:center id="itemDesc">${mostrarNorte.zona}</p>
+                      <p class="card-text" <p>$${mostrarNorte.precio}</p></p>
+                      <a href="#" class="btn btn-primary" onclick="addToCart(${mostrarNorte.id});pasarALS();" >Comprar</a>
+                  </div>
+              </div>
+          </div>
+  `;
+      });
+      document.getElementById('shop').innerHTML = content;
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+}
+
+function renderSur() {
+  fetch('./data/destinos.json')
+    .then((res) => res.json())
+    .then((zonas) => {
+      const mostrarSur = zonas.filter((dst) => dst.zona === `Sur`);
+      /* console.log(mostrarSur); */
+      let content = '';
+      mostrarSur.forEach((mostrarSur) => {
+        content += `
+    <div id="keyBoard" class="col-md-4 mt-2">
+              <div class="card" style="width: 18rem;">
+                  <img  src="${mostrarSur.img}" class="card-img-top img-fluid"  style="width:300px;height:200px;">
+                  <div class="card-body">
+                      <h5 class="card-title" id="itemName">${mostrarSur.nombre}</h5>
+                      <p class="card-text" text-aling:center id="itemDesc">${mostrarSur.zona}</p>
+                      <p class="card-text" <p>$${mostrarSur.precio}</p></p>
+                      <a href="#" class="btn btn-primary" onclick="addToCart(${mostrarSur.id});pasarALS();" >Comprar</a>
+                  </div>
+              </div>
+          </div>
+  `;
+      });
+      document.getElementById('shop').innerHTML = content;
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+}
+
+function renderInter() {
+  fetch('./data/destinos.json')
+    .then((res) => res.json())
+    .then((zonas) => {
+      const mostrarInter = zonas.filter((dst) => dst.zona === `Internacional`);
+      /* console.log(mostrarInter); */
+      let content = '';
+      mostrarInter.forEach((mostrarInter) => {
+        content += `
+    <div id="keyBoard" class="col-md-4 mt-2">
+              <div class="card" style="width: 18rem;">
+              <img  src="${mostrarInter.img}" class="card-img-top img-fluid"  style="width:300px;height:200px;">
+              <div class="card-body">
+                      <h5 class="card-title" id="itemName">${mostrarInter.nombre}</h5>
+                      <p class="card-text" text-aling:center id="itemDesc">${mostrarInter.zona}</p>
+                      <p class="card-text" <p>$${mostrarInter.precio}</p></p>
+                      <a href="#" class="btn btn-primary" onclick="addToCart(${mostrarInter.id});pasarALS();" >Comprar</a>
+                  </div>
+              </div>
+          </div>
+  `;
+      });
+      document.getElementById('shop').innerHTML = content;
+    })
+    .catch((e) => {
+      console.log(e);
+    });
 }
