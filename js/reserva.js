@@ -3,7 +3,19 @@ let prodCarro = JSON.parse(localStorage.getItem('productosAgregados')) || [];
 let storageJSON = JSON.stringify(prodCarro);
 localStorage.setItem('productosAgregados', storageJSON);
 
-document.getElementById('destinos').innerHTML = storageJSON;
+let html = '';
+for (let i = 0; i < prodCarro.length; i++) {
+  html =
+    html +
+    `                        
+                      <h5><b>${prodCarro[i].nombre}</b></h5>
+                      <p>$${prodCarro[i].precio}</p>
+                      <img  src=${prodCarro[i].img}  style="width:80px;height:80px; ">
+          
+          
+      `;
+}
+document.getElementById('destinos').innerHTML = html;
 
 // Envio de Datos al correo //
 const btn = document.getElementById('button');
