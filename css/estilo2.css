@@ -1,0 +1,19 @@
+.header {
+  color: #3f688b;
+  font-size: 27px;
+  padding: 10px;
+}
+
+.bigicon {
+  font-size: 35px;
+  color: #36a0ff;
+}
+input[type='submit'] {
+  display: inline-block;
+  margin-left: 330px;
+  padding: 6px 30px;
+  font-size: 14px;
+  background-color: #4460aa;
+  color: #fff;
+  border: none;
+}

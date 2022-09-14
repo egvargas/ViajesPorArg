@@ -78,7 +78,7 @@ function renderALL() {
         content += `
     <div id="keyBoard" class="col-md-4 mt-2">
               <div class="card" style="width: 18rem;">
-                  <img  src="${p.img}" class="card-img-top img-fluid"  style="width:300px;height:200px;">
+                  <img  src="${p.img}" class="card-img-top img-fluid"  style="width:300px;height:200px; ">
                   <div class="card-body">
                       <h5 class="card-title" id="itemName">${p.nombre}</h5>
                       <p class="card-text" text-aling:center id="itemDesc">${p.zona}</p>
@@ -106,6 +106,7 @@ renderCart();
 function renderCart() {
   if (carro.length == 0) {
     document.getElementById('carro').innerHTML = '<div class="alert alert-danger" role="alert" style="margin: 10px">No Has agregado ningun destino </div>';
+    document.getElementById('botoncito').style.display = 'none';
   } else {
     let html = '';
     for (let i = 0; i < carro.length; i++) {
@@ -114,20 +115,21 @@ function renderCart() {
         `
         <div id="keyBoard" class="col-md-4 mt-2">
               <div class="card" style="width: 18rem;">
-                  <img  src="${carro[i].img}" class="card-img-top img-fluid"  style="width:300px;height:200px;"> 
+                  <img  src="${carro[i].img}" class="card-img-top img-fluid"  style="width:80px;height:80px;margin: auto"> 
                   <div class="card-body">
                       <h5 class="card-title" id="itemName">${carro[i].nombre}</h5>
                       <p class="card-text" <p>$${carro[i].precio}</p></p>
                       <span style="cursor:pointer;" onclick="eliminar(${i});pasarALS();">❌</span>
+                      
                   </div>
               </div>
           </div>  
       `;
     }
     document.getElementById('carro').innerHTML = html;
+    document.getElementById('botoncito').style.display = '';
   }
 }
-
 function addToCart(id) {
   const foundProduct = destinos.find((item) => item.id == id);
   carro.push(foundProduct);
@@ -231,7 +233,6 @@ function renderInter() {
     .then((res) => res.json())
     .then((zonas) => {
       const mostrarInter = zonas.filter((dst) => dst.zona === `Internacional`);
-      /* console.log(mostrarInter); */
       let content = '';
       mostrarInter.forEach((mostrarInter) => {
         content += `
@@ -254,3 +255,7 @@ function renderInter() {
       console.log(e);
     });
 }
+
+let carro2 = JSON.parse(localStorage.getItem('productosAgregados')) || [];
+let suma = carro2.length;
+document.getElementById('sumaid').innerHTML = suma;
